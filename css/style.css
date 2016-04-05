@@ -1,0 +1,69 @@
+header {
+	color: white;
+	background-color: #7ec0ee;
+	padding-left: 25px;
+	margin-top: 5px;
+	border-bottom: 1px solid black;
+}
+#Gee {
+	position: absolute;
+	display: inline;
+	left: 140px;
+	font-family: Lucida Calligraphy, cursive;
+}
+.menu {
+	height: 100%;
+	width:100px;
+	float:left;
+	font-family:sans-serif;
+	background-color:#7ec0ee;
+	color:#7ec0ee;
+	padding-left:20px;
+	padding-top: 15px;
+
+}
+.menu a {
+	color:white;
+}
+.menu a:hover {
+	font-style: italic;
+	font-size: 110%;
+}
+#compose {
+border: 5px solid #0077CC;
+background-color: #0077CC;
+border-radius: 10%;
+color:white;
+}
+
+#main {
+	margin-top:50px;
+	margin-left:100px;
+}
+.sender, .subject, .date {
+	display: inline;
+	padding-right: 0px;
+}
+
+.sender {
+	font-size:110%;
+	font-weight: bold;
+}
+
+.subject {
+	margin-left: 50px;
+
+}
+
+.date {
+	float:right;
+}
+
+.body {
+	display:none;
+}
+
+.body.show{
+	display:block;
+	margin-left: 40px;
+}

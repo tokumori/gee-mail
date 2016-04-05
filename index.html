@@ -1,18 +1,142 @@
 <html>
 	<head>
+		<title>Gee-Mail</title>
 		<script src="js/mail-generator.js"></script>
 		<link href="css/style.css" rel="stylesheet" media="screen">
     <script>
       window.onload = function(){
-        // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
-        // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        
+
+      	function generateEmail(messages) {
+      		for(var i = 0; i < messages.length; i++) {
+      			console.log(messages[i]);
+      			console.log(messages[i].sender);
+      			console.log(messages[i].subject);
+      			console.log(messages[i].date);
+      			console.log(messages[i].body);
+      		
+      			var emailElement = document.createElement('div');
+      			emailElement.className = "email";
+      			document.getElementById('main').appendChild(emailElement);
+
+      			var ssdDiv = document.createElement('ul')
+      			ssdDiv.className = "ssd";
+      			emailElement.appendChild(ssdDiv);
+
+      			var senderElement = document.createElement('li');
+      			senderElement.className = "sender";
+      			senderElement.innerHTML = messages[i].sender;
+      			ssdDiv.appendChild(senderElement);
+
+      			var subjectElement = document.createElement('li');
+      			subjectElement.className = "subject";
+      			subjectElement.innerHTML = messages[i].subject;
+      			ssdDiv.appendChild(subjectElement);
+
+      			var dateElement = document.createElement('li');
+      			dateElement.className = "date";
+      			dateElement.innerHTML = messages[i].date;
+      			ssdDiv.appendChild(dateElement);
+
+      			var bodyElement = document.createElement('div');
+      			bodyElement.className = "body";
+      			bodyElement.innerHTML = messages[i].body;
+      			emailElement.appendChild(bodyElement);
+
+      		}
+      		
+      	}
+      	generateEmail(geemails);
+
+      	var emailMessages = document.getElementsByClassName('email');
+      	for (var i = 0; i<emailMessages.length; i++) {
+      		emailMessages[i].addEventListener('click', showMessage);
+      	}
+
+      	function showMessage(event){
+      		var showBody = this.querySelectorAll('.body')[0];
+      		if (showBody.classList.contains('show')===false){
+      			return showBody.classList.add('show');
+      		}else {
+      			return showBody.classList.remove('show');
+      		}
+      		
+      	}
+
+      	var inboxCount = document.getElementById('count');
+      	inboxCount = geemails.length;
+      	var totalCount = document.createTextNode(inboxCount);
+      	count.appendChild(totalCount);
+
+      	function addNewMail(){
+      	var emailNew = document.getElementsByClassName('email')
+      	var newMail = getNewMessage();
+      	console.log(getNewMessage);
+
+      	      	var emailElement = document.createElement('div');
+      			emailElement.className = "email";
+      			document.getElementById('main').insertBefore(emailElement, emailNew[0]);
+
+      			var ssdDiv = document.createElement('ul')
+      			ssdDiv.className = "ssd";
+      			emailElement.appendChild(ssdDiv);
+
+      			var senderElement = document.createElement('li');
+      			senderElement.className = "sender";
+      			senderElement.innerHTML = newMail.sender;
+      			ssdDiv.appendChild(senderElement);
+
+      			var subjectElement = document.createElement('li');
+      			subjectElement.className = "subject";
+      			subjectElement.innerHTML = newMail.subject;
+      			ssdDiv.appendChild(subjectElement);
+
+      			var dateElement = document.createElement('li');
+      			dateElement.className = "date";
+      			dateElement.innerHTML = newMail.date;
+      			ssdDiv.appendChild(dateElement);
+
+      			var bodyElement = document.createElement('div');
+      			bodyElement.className = "body";
+      			bodyElement.innerHTML = newMail.body;
+      			emailElement.appendChild(bodyElement);
+      	
+      			inboxCount++;
+      			count.innerHTML = inboxCount;
+
+      			var newEmailMessages = document.getElementsByClassName('email');
+      			for (var i = 0; i < emailMessages.length; i++) {
+      				newEmailMessages[i].addEventListener('click', showMessage);
+      			}
+
+      	}
+
+		setInterval(addNewMail, 10000);
+
       };
     </script>
 	</head>
 	<body>
-		<div class="container" id="main">
-			Build Me!
-		</div>
+	<header>
+		<a href="#"><img src="http://evacuation-chair.co.uk/wp-content/themes/k5-evacuation-chair/img/email-icon-blue.svg" width="75" height="75"/></a><h1 id=Gee>GeeMail</h1>
+	</header>
+
+			<div>
+				<ul class="menu">
+				<p></p>
+				<li><a href="#"><button type="button" id="compose">Compose</button></a></li>
+				<p></p>
+				<li><a href="#">Inbox (<span id="count"></span>)</a></li>
+				<p></p>
+				<li><a href="#">Starred</a></li>
+				<p></p>
+				<li><a href="#">Important</a></li>
+				<p></p>
+				<li><a href="#">Sent</a></li>
+				<p></p>
+				<li><a href="#">Trash</a></li>
+				</ul>
+			</div>
+			<div id="main"></div>
+
 	</body>
 </html>
